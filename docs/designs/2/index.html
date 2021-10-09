@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Resume builder</title>
+	<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<style>
+		@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+ @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+ *, *::after, *::before {
+	 box-sizing: border-box;
+}
+ html, body {
+	 height: 100%;
+}
+ body {
+	 font-family: 'Open Sans', sans-serif;
+	 font-size: 16px;
+	 line-height: 1.5em;
+}
+ a {
+	 color: #6c9;
+	 text-decoration: none;
+}
+ .clearfix::after, .clearfix::before {
+	 content: " ";
+	 display: table;
+}
+ .clearfix::after {
+	 clear: both;
+}
+ .bold {
+	 color: #4a4e51;
+	 font-weight: 400;
+}
+ .resume-wrapper {
+	 position: relative;
+	 text-align: center;
+	 height: 100%;
+}
+ .container {
+	 min-height: 600px;
+}
+ .profile {
+	 background: #fff;
+	 width: 40%;
+	 float: left;
+	 color: #9099a0;
+	 border-right: 1px solid #3d3e42;
+}
+ @media (max-width: 850px) {
+	 .profile {
+		 width: 100%;
+	}
+}
+ .profile .name-wrapper {
+	 float: left;
+	 width: 60%;
+}
+ .profile h1 {
+	 font-size: 2.5em;
+	 text-align: left;
+	 font-family: 'Varela Round', sans-serif;
+	 color: #4a4e51;
+	 text-transform: uppercase;
+	 line-height: 1em;
+	 padding-top: 40px;
+}
+ @media (max-width: 1200px) {
+	 .profile h1 {
+		 padding-top: 20px;
+	}
+}
+ @media (max-width: 450px) {
+	 .profile h1 {
+		 font-size: 1.8em;
+		 padding-top: 20px;
+	}
+}
+ .profile li {
+	 margin-bottom: 10px;
+}
+ .profile .picture-resume-wrapper {
+	 width: 40%;
+	 display: block;
+	 float: left;
+}
+ @media (max-width: 1200px) {
+	 .profile .picture-resume-wrapper {
+		 width: 100%;
+	}
+}
+ .profile .picture-resume {
+	 width: 220px;
+	 height: 220px;
+	 background-size: cover;
+	 border-radius: 50%;
+	 margin-right: 0px;
+	 display: table;
+	 position: relative;
+	 vertical-align: middle;
+}
+ .profile .picture-resume span {
+	 display: table-cell;
+	 vertical-align: middle;
+	 position: relative;
+	 margin: 0 auto;
+	 z-index: 10;
+	 text-align: center;
+}
+ .profile .contact-info {
+	 font-weight: 300;
+}
+ @media (max-width: 450px) {
+	 .profile .contact-info {
+		 margin-top: 50px;
+	}
+}
+ .profile .list-titles {
+	 float: left;
+	 text-align: left;
+	 font-weight: 600;
+	 width: 40%;
+	 color: #4a4e51;
+}
+ .profile .eduhead {
+	 float: left;
+	 text-align: left;
+	 font-weight: 600;
+	 font-size: 2.1em;
+	 width: 100%;
+	 margin-bottom: 10px;
+	 color: #4a4e51;
+}
+ .profile .list-content {
+	 float: left;
+	 width: 60%;
+	 text-align: left;
+	 font-weight: 300;
+}
+ .profile .contact-presentation {
+	 text-align: left;
+	 font-weight: 300;
+	 margin-top: 100px;
+	 margin-bottom: 100px;
+}
+ @media (max-width: 1200px) {
+	 .profile .contact-presentation {
+		 margin-top: 70px;
+		 margin-bottom: 70px;
+	}
+}
+ @media (max-width: 850px) {
+	 .profile .contact-presentation {
+		 margin-top: 50px;
+		 margin-bottom: 50px;
+	}
+}
+ .profile svg {
+	 width: 100%;
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+}
+ .profile .st0, .profile .st1 {
+	 /*fill: #6c9;*/
+}
+ .experience {
+	 width: 60%;
+	 float: left;
+	 position: relative;
+	 color: #9099a0;
+	 font-weight: 600;
+	 min-height: 100%;
+	 min-height: 100vh;
+}
+ @media (max-width: 850px) {
+	 .experience {
+		 width: 100%;
+	}
+}
+ .experience h2.experience-title {
+	 color: #6c9;
+	 text-align: left;
+	 text-transform: uppercase;
+	 font-size: 1.2em;
+	 margin-bottom: 20px;
+	 font-weight: 700;
+}
+ .experience .company-wrapper {
+	 width: 30%;
+	 float: left;
+	 text-align: left;
+	 padding-right: 5%;
+	 margin-bottom: 60px;
+}
+ @media (max-width: 450px) {
+	 .experience .company-wrapper {
+		 width: 100%;
+		 margin-bottom: 20px;
+	}
+}
+ .experience .job-wrapper {
+	 width: 70%;
+	 float: left;
+	 text-align: left;
+	 padding-right: 5%;
+	 margin-bottom: 60px;
+}
+ @media (max-width: 450px) {
+	 .experience .job-wrapper {
+		 width: 100%;
+		 margin-bottom: 40px;
+	}
+}
+ .experience .experience-title {
+	 color: #3d3e42;
+	 font-weight: 600;
+	 margin-bottom: 15px;
+}
+ .section-padding {
+	 padding: 60px 60px 40px 40px;
+}
+ @media (max-width: 850px) {
+	 .section-padding {
+		 padding: 80px 15% 40px 10%;
+	}
+}
+ @media (max-width: 450px) {
+	 .section-padding {
+		 padding: 40px 10% 20px 5%;
+	}
+}
+ .section-wrapper {
+	 width: 50%;
+	 float: left;
+	 text-align: left;
+	 color: #9099a0;
+	 font-weight: 300;
+	 margin-bottom: 20px;
+}
+ @media (max-width: 450px) {
+	 .section-wrapper {
+		 width: 100%;
+	}
+}
+ .section-wrapper:nth-child(3) {
+	 padding-right: 8%;
+}
+ .section-wrapper h2.section-title {
+	 color: #6c9;
+	 text-align: left;
+	 text-transform: uppercase;
+	 font-size: 1.2em;
+	 margin-bottom: 20px;
+	 font-weight: 700;
+}
+ .section-wrapper .skill-percentage {
+	 margin-bottom: 10px;
+	 font-weight: 600;
+	 color: #3d3e42;
+	 position: relative;
+}
+ 
+
+		.downloadbut {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			background: #c3def3;
+			padding: 10px 20px;
+			cursor: pointer;
+		}
+
+		.edls {
+			color: #9099a0;
+			margin: 2px;
+		}
+
+	</style>
+</head>
+<body>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<div class="resume-wrapper">
+	<section class="profile section-padding" style="padding-top: 0;">
+		<div class="container">
+
+      <div class="name-wrapper">
+        <h1><span class="fname">John </span><br/><span class="lname">Anderson</span></h1><!-- YOUR NAME AND LAST NAME  -->
+      </div>
+      <div class="clearfix"></div>
+      <div class="contact-info clearfix">
+      	<ul class="list-titles" style="list-style: none;">
+      		<li>Call</li>
+      		<li>Mail</li>
+      	</ul>
+        <ul class="list-content " style="list-style: none;">
+        	<li class="phoneshow">+34 123 456 789</li> <!-- YOUR PHONE NUMBER  -->
+        	<li class="emailshow">j.anderson@gmail.com</li> <!-- YOUR EMAIL -->
+        </ul>
+      </div>
+
+      <div style="margin-top: 10px;">
+        <h2 class="eduhead">Education</h2>
+        <ul class="list-titles educationwrapper" style="width: 100%;">
+      	</ul>
+      </div>
+
+      <div>
+        <h2 class="eduhead">Projects</h2>
+        <ul class="list-titles projectwrapper" style="width: 100%;">
+      	</ul>
+      </div>
+		</div>
+	</section>
+  
+  <section class="experience section-padding">
+  	<div class="container">
+  		<h2 class="experience-title">Experience</h2>
+      
+      <div class="experience-wrapper expwrapper">
+      </div><!--Skill experience-->
+      
+      <div class="section-wrapper clearfix">
+      	<h2 class="section-title">Skills</h2>  <!-- YOUR SET OF SKILLS  -->
+        	<ul class="skillwrapper"></ul>
+        
+      </div>
+      
+  	</div>
+  </section>
+  
+  <div class="clearfix"></div>
+</div>
+		<button class="downloadbut">Print resume or download as PDF </button>
+		
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+	$(".downloadbut").click(function(){
+			$(this).remove();
+			window.print();
+		})
+
+		var z=localStorage.getItem("myJson"); //getting job data
+		var data=JSON.parse(z);
+		var skillname =Object.values(data[5]);
+		var projectname =Object.keys(data[6]);
+		var projectdet =Object.values(data[6]);
+		var educationname =Object.keys(data[7]);
+		var educationdegree =Object.values(data[7]);
+		var educationloc =Object.keys(data[8]);
+		var educationtime =Object.values(data[8]);
+		var expcomp =Object.keys(data[9]);
+		var exptitle =Object.values(data[9]);
+		var exploc =Object.keys(data[10]);
+		var exptime =Object.values(data[10]);
+		var expdet =Object.values(data[11]);
+
+		$(".fname").html(data[0]);
+		$(".lname").html(data[1]);
+		$(".emailshow").html(data[2]);
+		$(".phoneshow").html(data[3]);
+
+		for(i=0;i<skillname.length;i++)
+		{
+			$(".skillwrapper").append('<li class="skill-percentage">'+skillname[i]+'</li>')
+		}
+
+		for(i=0;i<projectname.length;i++)
+		{
+			$(".projectwrapper").append('<li style="margin-bottom: 30px;"><p style="margin-bottom: 5px;">'+projectname[i]+'</p><p class="edls">'+projectdet[i]+'</p></li>')
+		}
+
+		for(i=0;i<educationname.length;i++)
+		{
+			$(".educationwrapper").append('<li style="margin-bottom: 30px;"><p style="margin-bottom: 5px;">'+educationname[i]+'</p><p class="edls">'+educationdegree[i]+'</p><p class="edls">'+educationloc[i]+'</p><p class="edls">'+educationtime[i]+'</p></li>')
+		}
+
+		for(i=0;i<expcomp.length;i++)
+		{
+			$(".expwrapper").append('<div class="company-wrapper clearfix"><div class="experience-title">'+expcomp[i]+'</div> <div class="time">'+exploc[i]+'</div><div class="time">'+exptime[i]+'</div></div><div class="job-wrapper clearfix"><div class="experience-title">'+exptitle[i]+'</div><div class="company-description"><p>'+expdet[i]+'</p></div></div>')
+		}
+
+
+	</script>
+</body>
+</html>
