@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Resume builder</title>
+	<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<style>
+		body {
+			margin: 0px;
+			padding: 0px;
+			font-size: 14px;
+			color: #444;
+		}
+		.shadowBox {
+			padding: 60px;
+		}
+		.shadowBox .main {
+			display: flex;
+			flex-direction: row;
+			width: 100%;
+			box-shadow: 0 0 30px rgba(0, 0, 0, 0.18);
+		}
+		.side_left {
+			background-color: #e5f1ff;
+			width: 35%;
+			padding: 30px;
+		}
+		.side_left .profile {
+			width: 240px;
+			height: 240px;
+			border-radius: 50%;
+			overflow: hidden;
+			margin: auto;
+			border: solid 5px #06d;
+			user-select: none;
+			pointer-events: none;
+		}
+		.side_left .profile img {
+			width: 100%;
+		}
+		.side_left .profile_name {
+			/*display: none;*/
+			padding: 60px 0;
+			padding-bottom: 0;
+			letter-spacing: 1px;
+			position: relative;
+			min-height: 200px;
+		}
+		.side_left .profile_name h1 {
+			font-size: 50px;
+			margin: 0;
+		}
+		.side_left .profile_name h1 strong {
+			color: #06d;
+		}
+		.side_left .profile_name h2 {
+			font-size: 42px;
+			margin: 0;
+			opacity: 0.95;
+			font-weight: 400;
+		}
+		.side_left .boxArea {
+			margin: 80px auto;
+			margin-top: 0;
+		}
+		.side_left .boxArea .title {
+			display: flex;
+			align-items: center;
+		}
+		.side_left .boxArea .title span {
+			width: 80px;
+		}
+		.side_left .boxArea .title span em {
+			width: 50px;
+			height: 50px;
+			background-color: #06d;
+			border-radius: 100px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			padding: 12px;
+		}
+		.side_left .boxArea .title span em svg path {
+			fill: #fff;
+		}
+		.side_left .boxArea .title h3 {
+			font-weight: bold;
+			letter-spacing: 1px;
+			color: #06d;
+			font-size: 2em;
+		}
+		.side_left .boxArea .contentArea {
+			margin: auto 40px 0 80px;
+			letter-spacing: 0.5px;
+			line-height: 1.6;
+		}
+		.side_left .boxArea.contact .contentArea {
+			margin: 0;
+		}
+		.side_left .boxArea.contact .contentArea .contact-list {
+			display: flex;
+			align-items: center;
+		}
+		.side_left .boxArea.contact .contentArea .contact-list:first-child em {
+			border-radius: 50px 50px 0 0;
+		}
+		.side_left .boxArea.contact .contentArea .contact-list:last-child em {
+			border-radius: 0 0 50px 50px;
+		}
+		.side_left .boxArea.contact .contentArea .contact-list span {
+			width: 80px;
+		}
+		.side_left .boxArea.contact .contentArea .contact-list span em {
+			width: 50px;
+			height: 50px;
+			background-color: #06d;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			padding: 2px;
+		}
+		.side_left .boxArea.contact .contentArea .contact-list span em svg path {
+			fill: #fff;
+		}
+		.side_left .boxArea.contact .contentArea .contact-list h3 {
+			font-size: 16px;
+			font-weight: normal;
+			margin: 0;
+		}
+		.side_left .boxArea.contact .contentArea .contact-list h3 a {
+			color: #444;
+		}
+		.side_left .boxArea.education .title svg path {
+			fill: transparent;
+			color: white;
+		}
+		.side_left .boxArea.education .contentArea .education_fild {
+			margin: 30px auto;
+			font-size: 16px;
+		}
+		.side_left .boxArea.education .contentArea .education_fild p {
+			margin: 0px;
+		}
+		.side_left .boxArea.education .contentArea .education_fild strong {
+			font-weight: 500;
+		}
+		@media (max-width: 767px) {
+			.main {
+				flex-direction: column !important;
+			}
+			.main .side_left, .main .side_Right {
+				width: 100% !important;
+			}
+			.main .side_left .profile_name {
+				display: block !important;
+				min-height: 0;
+				padding: 30px 0;
+				padding-bottom: 10px;
+				text-align: center;
+			}
+			.main .side_left .profile_name::after {
+				display: none;
+			}
+			.main .side_left .profile_name h1 {
+				font-size: 38px !important;
+			}
+			.main .side_left .profile_name h2 {
+				font-size: 32px !important;
+			}
+			.main .side_left .boxArea {
+				margin: 60px auto;
+			}
+			.main .side_Right {
+				padding: 30px !important;
+			}
+			.main .side_Right .profile_name {
+				display: none !important;
+			}
+			.main .side_Right .areaBox {
+				margin: 50px auto !important;
+			}
+		}
+		@media (min-width: 768px) and (max-width: 1023px) {
+			.side_left {
+				width: 45% !important;
+			}
+			.side_Right {
+				width: calc(100% - 45%) !important;
+				padding: 30px 40px !important;
+			}
+		}
+		.side_Right {
+			background-color: white;
+			padding: 30px 80px;
+			width: calc(100% - 35%);
+		}
+		.side_Right .profile_name {
+			padding: 60px 0;
+			padding-bottom: 0;
+			letter-spacing: 1px;
+			position: relative;
+			min-height: 200px;
+		}
+		.side_Right .profile_name::after {
+			content: "";
+			position: absolute;
+			right: -40px;
+			bottom: 0;
+			width: 25px;
+			height: 80%;
+			background-color: #06d;
+			border-radius: 50px;
+		}
+		.side_Right .profile_name h1 {
+			font-size: 54px;
+			margin: 0;
+		}
+		.side_Right .profile_name h1 strong {
+			color: #06d;
+		}
+		.side_Right .profile_name h2 {
+			font-size: 42px;
+			margin: 0;
+			opacity: 0.95;
+			font-weight: 400;
+		}
+		.side_Right .areaBox {
+			margin: 60px auto;
+		}
+		.side_Right .areaBox h3 {
+			font-weight: bold;
+			letter-spacing: 1px;
+			color: #06d;
+			font-size: 2em;
+		}
+		.side_Right .areaBox.experience .list {
+			font-size: 16px;
+			margin: 40px auto;
+		}
+		.side_Right .areaBox.experience .list strong {
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+		.side_Right .areaBox.experience .list p {
+			margin: 0;
+		}
+		
+		.side_Right .areaBox.skill .list strong {
+			width: 130px;
+			font-size: 14px;
+			font-weight: bold;
+			text-transform: uppercase;
+			letter-spacing: 0.5px;
+		}
+		.side_Right .areaBox.skill .list span {
+			width: 300px;
+			height: 5px;
+			border-radius: 10px;
+			background-color: #06d;
+			position: relative;
+		}
+		.side_Right .areaBox.skill .list span::after {
+			content: '';
+			position: absolute;
+			top: -5px;
+			left: 100%;
+			width: 15px;
+			height: 15px;
+			border-radius: 50px;
+			background-color: #06d;
+		}
+		.side_Right .areaBox.skill .list.p-90 span::after {
+			left: 90%;
+		}
+		.side_Right .areaBox.skill .list.p-80 span::after {
+			left: 80%;
+		}
+		.side_Right .areaBox.skill .list.p-75 span::after {
+			left: 75%;
+		}
+		.side_Right .areaBox.skill .list.p-70 span::after {
+			left: 70%;
+		}
+		.side_Right .areaBox.skill .list.p-60 span::after {
+			left: 60%;
+		}
+		.side_Right .areaBox.skill .list.p-50 span::after {
+			left: 50%;
+		}
+		.side_Right .areaBox.interests .box {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			font-size: 16px;
+			margin: 30px auto;
+		}
+		.side_Right .areaBox.interests .box p {
+			margin: 0;
+			margin-right: 30px;
+		}
+		.side_Right .areaBox.portfolio a {
+			display: block;
+			margin: 20px auto;
+			font-size: 16px;
+			color: #444;
+		}
+		@media (max-width: 1023px) {
+			.shadowBox {
+				padding: 0px !important;
+			}
+		}
+
+		.downloadbut {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			background: #c3def3;
+			padding: 10px 20px;
+			cursor: pointer;
+		}
+
+		.skillbox {
+			border-radius: 50px;
+			display: inline-block;
+			margin: 10px;
+			padding: 10px 20px;
+			background: #06d;
+			color: white;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div class="shadowBox">
+		<section class="main">
+			<!-- leftSide -->
+			<div class="side_left">
+<div class="profile_name">
+			<h1><strong class="fname">Vishal</strong> <span class="lname">Sondarva</span></h1>
+		</div>
+				<div class="boxArea contact">
+					<div class="title">
+						<span>
+
+						</span>
+						<h3>Contact Me</h3>
+					</div>
+					<div class="contentArea">
+						<div class="contact-list">
+							<span>
+								<em>
+									<?xml version="1.0" ?><svg id="Layer_1" height="22"
+									style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"
+									xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+									xmlns:xlink="http://www.w3.org/1999/xlink">
+									<path
+									d="M351.5,339.3c-18.8-4.1-41.3,3.1-49.4,20.6c-4.7,10.1-5.4,23.9-15.6,28.4c-7.3,3.3-15.7-0.4-22.7-4.3  c-34.4-19.2-103.4-156.4-98.2-195.5c1-7.9,3.2-16.9,10.1-20.8c9.7-5.5,21.2,2.2,32.1,4.4c18.9,4,38-9.8,46-27.3  c8-17.5,7.1-37.8,4.4-56.9c-3.2-22.3-9.2-45.2-24-62.1c-42.2-48-104.5,0.4-129.4,40.9C88.8,92.8,80,122.7,75.8,152.8  C66.7,217,182,446.4,239,477.5c26.7,14.6,55.9,25.3,86.2,28c47.4,4.2,123.4-16.9,110.1-79.4c-4.7-22-19.5-40.5-35.5-56.3  C386,356.2,370.3,343.4,351.5,339.3z"
+									id="XMLID_1_" /></svg>
+								</em>
+							</span>
+							<h3 class="phoneshow">+91 9624805595</h3>
+						</div>
+						<div class="contact-list">
+							<span>
+								<em>
+
+									<?xml version="1.0" ?>
+									<!DOCTYPE svg
+									PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+									<svg height="28" id="Layer_1" style="enable-background:new 0 0 16 16;" version="1.1"
+									viewBox="0 0 16 16" width="16px" xml:space="preserve"
+									xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+									<path
+									d="M8,10c-0.266,0-0.5-0.094-1-0.336L0,6v7c0,0.55,0.45,1,1,1h14c0.55,0,1-0.45,1-1V6L9,9.664C8.5,9.906,8.266,10,8,10z M15,2  H1C0.45,2,0,2.45,0,3v0.758l8,4.205l8-4.205V3C16,2.45,15.55,2,15,2z" />
+								</svg>
+							</em>
+						</span>
+						<h3 class="emailshow">sondarvavishal@gmail.com</h3>
+					</div>
+			</div>
+		</div>
+
+		<div class="boxArea education">
+			<div class="title">
+				<span>
+					<em>
+
+						<?xml version="1.0" ?><svg fill="none" height="28" stroke="currentColor"
+						stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+						width="24" xmlns="http://www.w3.org/2000/svg">
+						<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+						<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" /></svg>
+					</em>
+				</span>
+				<h3>Education</h3>
+			</div>
+			<div class="contentArea">
+				<div class="educationwrapper"></div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- rightSide -->
+	<div class="side_Right">
+
+		<div class="areaBox experience">
+			<h3>Experience</h3>
+
+			<div class="expwrapper"></div>
+
+		</div>
+
+		
+
+		<div class="areaBox experience">
+			<h3>Projects</h3>
+
+			<div class="projectwrapper"></div>
+
+		</div>
+
+		<div class="areaBox skill">
+			<div class="title">
+				
+				<h3>Skills</h3>
+			</div>
+
+			<div class="skillwrapper"></div>
+
+		</div>
+
+	</div>
+</section>
+</div>
+<button class="downloadbut">Print resume or download as PDF </button>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+	$(".downloadbut").click(function(){
+		$(this).remove();
+		window.print();
+	})
+
+		var z=localStorage.getItem("myJson"); //getting job data
+		var data=JSON.parse(z);
+		var skillname =Object.values(data[5]);
+		var projectname =Object.keys(data[6]);
+		var projectdet =Object.values(data[6]);
+		var educationname =Object.keys(data[7]);
+		var educationdegree =Object.values(data[7]);
+		var educationloc =Object.keys(data[8]);
+		var educationtime =Object.values(data[8]);
+		var expcomp =Object.keys(data[9]);
+		var exptitle =Object.values(data[9]);
+		var exploc =Object.keys(data[10]);
+		var exptime =Object.values(data[10]);
+		var expdet =Object.values(data[11]);
+
+		$(".fname").html(data[0]);
+		$(".lname").html(data[1]);
+		$(".emailshow").html(data[2]);
+		$(".phoneshow").html(data[3]);
+
+		for(i=0;i<skillname.length;i++)
+		{
+			$(".skillwrapper").append('<div class="list p-80 skillbox"><strong>'+skillname[i]+'</strong></div>')
+		}
+
+		for(i=0;i<projectname.length;i++)
+		{
+			$(".projectwrapper").append('<div class="list"><strong style="float: left;">'+projectname[i]+'</strong><br><br><p>'+projectdet[i]+'</p></div>')
+		}
+
+		for(i=0;i<educationname.length;i++)
+		{
+			$(".educationwrapper").append('<div class="education_fild"><p style="font-weight:700;">'+educationname[i]+'</p><strong>'+educationdegree[i]+'</strong><p>'+educationloc[i]+'</p><p>'+educationtime[i]+'</p></div>')
+		}
+
+		for(i=0;i<expcomp.length;i++)
+		{
+			$(".expwrapper").append('<div class="list"><strong style="float: left;">'+exptitle[i]+'</strong><p style="float: right;">'+exploc[i]+'</p><br><p style="float: left;">'+expcomp[i]+'</p><p style="float: right;">'+exptime[i]+'</p><br><br><p>'+expdet[i]+'</p></div>')
+		}
+
+
+	</script>
+</body>
+</html>
