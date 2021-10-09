@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form</title>
+	<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+	<style>
+		body {
+			background: white;
+		}
+
+		.wrapper {
+			margin-top: 30px;
+			width: 70%;
+			margin: auto;
+		}
+
+		.heading {
+			color: #0ea277;
+			font-weight: 700;
+			text-align: center;
+			margin-bottom: 40px;
+		}
+
+		.blogq {
+			background: rgba(240, 240, 242, 0.4);
+			
+			border-radius: 5px;
+			padding: 5px 10px;
+			cursor: pointer;
+			margin: auto;
+			margin-bottom: 30px;
+		}
+
+		.down {
+			float: right;
+		}
+
+		.bloga {
+			display: none;
+			padding: 10px;
+			cursor: default;
+			
+		}
+		.q {
+			font-size: 1.5em;
+			font-weight: 700;
+			text-transform: uppercase;
+		}
+
+		.submit {
+			padding: 10px 20px;
+    border-radius: 50px;
+    background: #0ca27d;
+    color: white;
+    font-size: 1.3em;
+    display: inline-block;
+    margin-top: 40px;
+    cursor: pointer;
+    float: right;
+		}
+		.inputwrapper {
+			display: inline-block;
+			margin: 20px;
+			margin-right: 80px;
+			margin-left: 0;
+			font-size: 1em;
+			font-weight: 500;
+		}
+		input {
+			padding: 10px;
+			width: 15vw;
+		}
+
+		.submitbuts {
+			margin-left: -50px;
+			display: inline-block;
+			background: rgba(240, 240, 242, 1);
+			cursor: pointer;
+			padding: 10px 50px;
+		}
+		.submitbuts:hover {
+			background: #d9d9d9;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="wrapper">
+		<h1 class="heading">Portfolio Details form</h1>
+		<div class="blogq 1q">
+			<h2 class="q">About me <i class="fas fa-chevron-down down"></i></h2>
+		</div>
+		<div class="bloga 1a">
+			<div class="inputwrapper">
+				<h3>First name</h3>
+				<input type="text" class="fname">
+			</div>
+			<div class="inputwrapper">
+				<h3>Last name</h3>
+				<input type="text" class="lname">
+			</div>
+		</div>
+		
+		<div class="blogq 2q">
+			<h2 class="q">Contact <i class="fas fa-chevron-down down"></i></h2>
+		</div>
+		<div class="bloga 2a">
+			<div class="inputwrapper">
+				<h3>Email ID</h3>
+				<input type="text" class="email">
+			</div>
+			<div class="inputwrapper">
+				<h3>Phone number</h3>
+				<input type="text" class="phone">
+			</div>
+			<br><br>
+		</div>
+		
+		<div class="blogq 3q">
+			<h2 class="q">Skills <i class="fas fa-chevron-down down"></i></h2>
+		</div>
+		<div class="bloga 3a">
+			<div class="inputwrapper">
+				<h3 style="display: inline-block; margin-right: 30px;">Number of Skills</h3>
+				<input type="number" class="skillno">
+			</div>
+			<div type="submit" value="Submit" class="submitskill submitbuts">Submit</div>
+			
+			<div class="skills">
+			</div>
+		</div>
+		
+		<div class="blogq 4q">
+			<h2 class="q">Projects <i class="fas fa-chevron-down down"></i></h2>
+		</div>
+		<div class="bloga 4a">
+			<div class="inputwrapper">
+				<h3 style="display: inline-block; margin-right: 30px;">Number of Projects</h3>
+				<input type="number" class="projectno">
+			</div>
+			<div type="submit" value="Submit" class="submitproject submitbuts">Submit</div>
+			
+			<div class="projects">
+			</div>
+		</div>
+
+		<div class="blogq 5q">
+			<h2 class="q">Education <i class="fas fa-chevron-down down"></i></h2>
+		</div>
+		<div class="bloga 5a">
+			<div class="inputwrapper">
+				<h3 style="display: inline-block; margin-right: 30px;">Number of Eductaion entries</h3>
+				<input type="number" class="educationno">
+			</div>
+			<div type="submit" value="Submit" class="submiteducation submitbuts">Submit</div>
+			
+			<div class="educations">
+			</div>
+		</div>
+
+		<div class="blogq 6q">
+			<h2 class="q">Experience <i class="fas fa-chevron-down down"></i></h2>
+		</div>
+		<div class="bloga 6a">
+			<div class="inputwrapper">
+				<h3 style="display: inline-block; margin-right: 30px;">Number of experience entries</h3>
+				<input type="number" class="expno">
+			</div>
+			<div type="submit" value="Submit" class="submitexp submitbuts">Submit</div>
+			
+			<div class="exps">
+			</div>
+		</div>
+
+		<div class="submit">Submit</div>
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script>
+		var prev=0;
+		$(".blogq").click(function(){
+			$(".bloga").slideUp();
+			var a= $(this).attr("class").split(" ")[1][0];
+			if(a!=prev)
+			{
+				$("."+a+"a").slideDown();
+				prev=a;
+			}
+			else
+				prev=0;
+		})
+
+		$("."+1+"a").slideDown();
+		prev=1;
+
+		var det=[];
+
+		$(".submitskill").on("click",function(){
+			var x=1;
+			for(i=0;i<$(".skillno").val();i++,x++)
+				$(".skills").append('<div class="inputwrapper"><h3>Skill '+x+'</h3><input type="text" class="skillname'+i+'"></div><br>');
+
+		})
+
+		$(".submitproject").on("click",function(){
+			var x=1;
+			for(i=0;i<$(".projectno").val();i++,x++)
+				$(".projects").append('<div class="inputwrapper"><h3>Project '+x+' Title</h3><input type="text" class="projectname'+i+'"></div><div class="inputwrapper"><h3>Project '+x+' Description</h3><textarea rows="3" cols="100" name="comment" class="projectdet'+i+'" style="padding: 10px;"></textarea></div><br>');
+
+		})
+
+		$(".submiteducation").on("click",function(){
+			var x=1;
+			for(i=0;i<$(".educationno").val();i++,x++)
+				$(".educations").append('<div class="inputwrapper"><h3>Institute '+x+' Name</h3><input type="text" class="educationname'+i+'"></div><div class="inputwrapper"><h3>Degree or class</h3><input type="text" class="educationdegree'+i+'"></div><br><div class="inputwrapper"><h3>Institute Location</h3><input type="text" class="educationloc'+i+'"></div><div class="inputwrapper"><h3>Eductaion Time period (eg. Apr, 21 - May, 21)</h3><input type="text" class="educationtime'+i+'"></div><br>');
+
+		})
+
+		$(".submitexp").on("click",function(){
+			var x=1;
+			for(i=0;i<$(".expno").val();i++,x++)
+				$(".exps").append('<div class="inputwrapper"><h3>Company '+x+' Name</h3><input type="text" class="expcomp'+i+'"></div><div class="inputwrapper"><h3>Job Title</h3><input type="text" class="exptitle'+i+'"></div><br><div class="inputwrapper"><h3>Work Location</h3><input type="text" class="exploc'+i+'"></div><div class="inputwrapper"><h3>Work Time period (eg. Apr, 21 - May, 21)</h3><input type="text" class="exptime'+i+'"></div><br><div class="inputwrapper"><h3>Work '+x+' Description</h3><textarea rows="3" cols="100" name="comment" class="expdet'+i+'" style="padding: 10px;"></textarea></div><br>');
+
+		})
+
+		var skill= {};
+		var project={};
+		var education1={};
+		var education2={};
+		var exp1={};
+		var exp2={};
+		var exp3={};
+
+		$(".submit").on("click",function(){
+			for(i=0;i<$(".skillno").val();i++,x++)
+			{
+				var x = $(".skillname"+i).val();
+				skill[i]=x;
+			}
+			for(i=0;i<$(".projectno").val();i++,x++)
+			{
+				var x = $(".projectname"+i).val();
+				var level = $(".projectdet"+i).val();
+				project[x]=level;
+			}
+			for(i=0;i<$(".educationno").val();i++,x++)
+			{
+				var x = $(".educationname"+i).val();
+				var level = $(".educationdegree"+i).val();
+				education1[x]=level;
+			}
+			for(i=0;i<$(".educationno").val();i++,x++)
+			{
+				var x = $(".educationloc"+i).val();
+				var level = $(".educationtime"+i).val();
+				education2[x]=level;
+			}
+			for(i=0;i<$(".expno").val();i++,x++)
+			{
+				var x = $(".expcomp"+i).val();
+				var level = $(".exptitle"+i).val();
+				exp1[x]=level;
+			}
+			for(i=0;i<$(".expno").val();i++,x++)
+			{
+				var x = $(".exploc"+i).val();
+				var level = $(".exptime"+i).val();
+				exp2[x]=level;
+			}
+			for(i=0;i<$(".expno").val();i++,x++)
+			{
+				var x = $(".expdet"+i).val();
+				exp3[i]=x;
+			}
+			det[0]=$(".fname").val();
+			det[1]=$(".lname").val();
+			det[2]=$(".email").val();
+			det[3]=$(".phone").val();
+			det[5]=skill;
+			det[6]=project;
+			det[7]=education1;
+			det[8]=education2;
+			det[9]=exp1;
+			det[10]=exp2;
+			det[11]=exp3;
+
+			localStorage.setItem("myJson", JSON.stringify(det));
+			var z=localStorage.getItem("designno"); //getting job data
+			var data=JSON.parse(z);
+			window.location.href = "designs/"+data+"/index.html";
+		})
+	</script>
+</body>
+</html>
